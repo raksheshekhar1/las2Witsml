@@ -1,0 +1,29 @@
+las2witsml -- Convert Log ASCII Standard (LAS) files to WITSML <log> objects.
+
+Use this script to convert LAS files to WITSML logs. The script attempts to be forgiving
+of some commonly encountered variations. It can process most LAS v2 and v3 files.  
+
+Usage: las2witsml [-n name] [-u uid] [-b uid] [-l uid] [-x version] [-m uomfile] [-h] [-v] lasfile
+    -n, --namelog name               Name to give the WITSML log; default 'Untitled'
+    -u, --uidwell uid                WITSML uid of the containing well
+    -b, --uidwellbore uid            WITSML uid of the containing wellbore
+    -l, --uidlog  uid                WITSML uid to assign the log
+    -x, --version  version           WITSML version to emit, either 1.3.1 or 1.4.1; default 1.4.1
+    -m, --uomfile  path              Path to a units of measure JSON file, mapping foreign  
+                                     to WITSML units of measure e.g. https://github.com/wellstorm/las2witsml/blob/master/lib/uom.json 
+    -v, --verbose                    Emit diagnostic output on stderr
+    -h, --help                       Show this message
+
+Example:
+las2witsml -x 1.3.1 -u W1 -b B1 -l L1 -n Unnamed lasfile.las
+
+las2witsml files: Copyright 2012 Wellstorm Development LLC
+License: Apache 2.0
+
+History:
+
+12 Jun 2012 -- gemified existing code and initial commit. (0.1.1)
+14 Jun 2012 -- proper return values to shell: 0 success, 1 failure. (0.1.2)
+30 Sep 2013 -- extended list of units of measure; throw exception if unrecognized uom. (0.1.3)
+ 1 Oct 2013 -- support for external uom file (0.1.4)
+ 4 Oct 2013 -- report all the uom conversion errors if there are any. (0.1.5)
